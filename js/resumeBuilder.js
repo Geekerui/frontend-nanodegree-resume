@@ -76,3 +76,7 @@ if (bio.skills.length > 0) {
     var formattedName = HTMLheaderName.replace("%data%", bio.name);
     $("#header").prepend(formattedName);
 }
+work.jobs.forEach(function (job) {
+    $(".work-entry").append(HTMLworkStart);
+    $("")
+});
