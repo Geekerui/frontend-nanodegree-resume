@@ -65,8 +65,8 @@ var projects = {
 		images: ["http://placehold.it/150x150"]
 	}]
 };
-$("#header").append(HTMLheaderName);
-var formattedName = HTMLheaderName.replace("%data%", bio.name);
+$("#header").prepend(HTMLheaderName);
+var formattedName = HTMLheaderName.replace("%data%", bio.name);;
 if (bio.skills.length > 0) {
 	$("#header").append(HTMLskillsStart);
 
@@ -82,5 +82,6 @@ if (bio.skills.length > 0) {
 }
 for (job in work.jobs) {
 	$("#workExperience").append(HTMLworkStart);
+
 
 }
