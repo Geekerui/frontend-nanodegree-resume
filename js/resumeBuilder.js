@@ -98,13 +98,13 @@ function displayWork() {
 
 	// 显示教育信息
 	education.schools.forEach(function(school) {
-		$("#header").append(HTMLschoolStart);
+		$("#education").append(HTMLschoolStart);
 
 		var formattedSchoolName = HTMLschoolName.replace("%data%", school.name);
 		$(".education-entry:last").append(formattedSchoolName);
 		var formattedSchoolDegree = HTMLschoolDegree.replace("%data%", school.degree);
 		$(".education-entry:last").append(formattedSchoolDegree);
-		var formattedSchoolDates = HTMLschoolDates.replace("%data%",school.date);
+		var formattedSchoolDates = HTMLschoolDates.replace("%data%", school.date);
 		$(".education-entry:last").append(formattedSchoolDates);
 		var formattedSchoolLocation = HTMLschoolLocation.replace("%data%", school.location);
 		$(".education-entry:last").append(formattedSchoolLocation);
