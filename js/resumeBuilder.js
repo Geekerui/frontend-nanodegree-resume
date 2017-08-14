@@ -1,14 +1,14 @@
 var bio = {
 	name: "Kangrui",
 	role: "Web Developer",
-	welcomeMessage: "Welcome",
+	welcomeMessage: "Find a job",
 	biopic: "images/fry.jpg",
 	contacts: {
-		mobile: "138-0000-0000",
+		mobile: "138-6672-3117",
 		email: "gaokangrui@gmail.com",
 		github: "Geekerui",
 		twitter: "@gaokangrui",
-		blog: "null",
+		blog: "github.com/geekerui",
 		location: "Hefei"
 	},
 	skills: ["awesomeness", "delivering things", "cryogenic sleep", "saving the universe"]
@@ -19,22 +19,22 @@ var education = {
 		location: "Hefei",
 		degree: "Junior High School",
 		date: "2010-06-30",
-		major: ["CS"],
-		url: "null"
+		major: ["Student"],
+		url: "http://50z.ssjy.cn/"
 	}, {
 		name: "Senior High School attached HFUT",
 		location: "Hefei",
 		degree: "Senior High School",
 		date: "2013-06-30",
-		major: ["CS"],
-		url: "null"
+		major: ["Student"],
+		url: "http://www.hfgdfz.net/"
 	}, {
 		name: "AHCME",
 		location: "Wuhu",
 		degree: "Colledge",
 		date: "2010-06-30",
 		major: ["CS"],
-		url: "null"
+		url: "http//www.ahcme.edu.cn"
 	}]
 };
 var work = {
@@ -95,6 +95,22 @@ function displayWork() {
 	}
 	var formattedWelcomeMsg = HTMLwelcomeMsg.replace("%data%", bio.welcomeMessage);
 	$("#header").append(formattedWelcomeMsg);
+
+	// 显示教育信息
+	education.schools.forEach(function(school) {
+		$("#header").append(HTMLschoolStart);
+
+		var formattedSchoolName = HTMLschoolName.replace("%data%", school.name);
+		$(".education-entry:last").append(formattedSchoolName);
+		var formattedSchoolDegree = HTMLschoolDegree.replace("%data%", school.degree);
+		$(".education-entry:last").append(formattedSchoolDegree);
+		var formattedSchoolDates = HTMLschoolDates.replace("%data%",school.date);
+		$(".education-entry:last").append(formattedSchoolDates);
+		var formattedSchoolLocation = HTMLschoolLocation.replace("%data%", school.location);
+		$(".education-entry:last").append(formattedSchoolLocation);
+		var formattedSchoolMajor = HTMLschoolMajor.replace("%data%", school.major);
+		$(".education-entry:last").append(formattedSchoolMajor);
+	});
 
 	// 显示技能
 	if (bio.skills.length > 0) {
