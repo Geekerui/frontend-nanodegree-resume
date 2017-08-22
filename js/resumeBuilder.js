@@ -1,16 +1,16 @@
 var bio = {
 	name: "Kangrui",
 	role: "Web Developer",
-	welcomeMessage: "Find a job",
-	biopic: "images/fry.jpg",
 	contacts: {
-		mobile: "138-6672-3117",
+		mobile: "138-0000-0000",
 		email: "gaokangrui@gmail.com",
 		github: "Geekerui",
 		twitter: "@gaokangrui",
 		blog: "github.com/geekerui",
 		location: "Hefei"
 	},
+	welcomeMessage: "Resume",
+	biopic: "images/avatar.png",
 	skills: ["awesomeness", "delivering things", "cryogenic sleep", "saving the universe"]
 };
 var education = {
@@ -127,7 +127,7 @@ function displayWork() {
 	}
 
 	// 显示工作详情
-	for (job in work.jobs) {
+	for (var job in work.jobs) {
 		$("#workExperience").append(HTMLworkStart);
 
 		var formattedEmployer = HTMLworkEmployer.replace("%data%", work.jobs[job].employer);
