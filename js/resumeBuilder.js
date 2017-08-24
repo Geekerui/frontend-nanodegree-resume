@@ -68,7 +68,7 @@ var projects = {
 };
 
 // 添加一个函数到代码中用来显示之前的内容
-function displayWork() {
+bio.display = function() {
 	// 身份
 	var formattedRole = HTMLheaderRole.replace("%data%", bio.role);
 	$("#header").prepend(formattedRole);
@@ -96,7 +96,23 @@ function displayWork() {
 	var formattedWelcomeMsg = HTMLwelcomeMsg.replace("%data%", bio.welcomeMessage);
 	$("#header").append(formattedWelcomeMsg);
 
-	// 显示教育信息
+	// 显示技能
+	if (bio.skills.length > 0) {
+		$("#header").append(HTMLskillsStart);
+
+		var formattedSkill = HTMLskills.replace("%data%", bio.skills[0]);
+		$("#skills").append(formattedSkill);
+		formattedSkill = HTMLskills.replace("%data%", bio.skills[1]);
+		$("#skills").append(formattedSkill);
+		formattedSkill = HTMLskills.replace("%data%", bio.skills[2]);
+		$("#skills").append(formattedSkill);
+		formattedSkill = HTMLskills.replace("%data%", bio.skills[3]);
+		$("#skills").append(formattedSkill);
+	}
+}
+
+// 显示教育信息
+education.display = function() {
 	education.schools.forEach(function(school) {
 		$("#education").append(HTMLschoolStart);
 
@@ -111,22 +127,14 @@ function displayWork() {
 		var formattedSchoolMajor = HTMLschoolMajor.replace("%data%", school.major);
 		$(".education-entry:last").append(formattedSchoolMajor);
 	});
+}
 
-	// 显示技能
-	if (bio.skills.length > 0) {
-		$("#header").append(HTMLskillsStart);
+// 显示技能
+// bio.skills.display = function() {
 
-		var formattedSkill = HTMLskills.replace("%data%", bio.skills[0]);
-		$("#skills").append(formattedSkill);
-		formattedSkill = HTMLskills.replace("%data%", bio.skills[1]);
-		$("#skills").append(formattedSkill);
-		formattedSkill = HTMLskills.replace("%data%", bio.skills[2]);
-		$("#skills").append(formattedSkill);
-		formattedSkill = HTMLskills.replace("%data%", bio.skills[3]);
-		$("#skills").append(formattedSkill);
-	}
-
-	// 显示工作详情
+// }
+// 显示工作详情
+work.display = function() {
 	for (var job in work.jobs) {
 		$("#workExperience").append(HTMLworkStart);
 
@@ -142,32 +150,7 @@ function displayWork() {
 		$(".work-entry:last").append(formattedDatesLocationDesc);
 
 	}
-
 }
-// 调用函数
-displayWork();
-
-// 添加国际化名称显示按钮
-$("#main").append(internationalizeButton);
-
-// 显示国际化名称
-function inName(nameString) {
-	var nameArray = nameString.split(" ");
-	// 名全部小写
-	nameArray[0] = nameArray[0].toLowerCase();
-	// 姓全部大写
-	nameArray[1] = nameArray[1].toUpperCase();
-	// 分割姓的首字母转为大写，其他保持不变
-	var giveName = nameArray[0].substr(0, 1).toUpperCase() + nameArray[0].substr(1);
-	return giveName + " " + nameArray[1];
-
-}
-// 获取鼠标点击时在页面上的坐标
-$(document).click(function(loc) {
-	var x = loc.pageX;
-	var y = loc.pageY;
-	logClicks(x, y);
-});
 
 // 在 projects 对象中封装 display()函数
 projects.display = function() {
@@ -188,4 +171,29 @@ projects.display = function() {
 		}
 	}
 }
-projects.display();
+
+// 添加国际化名称显示按钮
+// itnButton.dispaly = function() {
+// 	$("#main").append(internationalizeButton);
+
+// 	// 显示国际化名称
+// 	function inName(nameString) {
+// 		var nameArray = nameString.split(" ");
+// 		// 名全部小写
+// 		nameArray[0] = nameArray[0].toLowerCase();
+// 		// 姓全部大写
+// 		nameArray[1] = nameArray[1].toUpperCase();
+// 		// 分割姓的首字母转为大写，其他保持不变
+// 		var giveName = nameArray[0].substr(0, 1).toUpperCase() + nameArray[0].substr(1);
+// 		return giveName + " " + nameArray[1];
+// 	}
+// 	// 获取鼠标点击时在页面上的坐标
+// 	$(document).click(function(loc) {
+// 		var x = loc.pageX;
+// 		var y = loc.pageY;
+// 		logClicks(x, y);
+// 	});
+// }
+bio.display();
+education.display();
+work.display();
