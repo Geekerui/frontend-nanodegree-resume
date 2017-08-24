@@ -77,14 +77,19 @@ bio.display = function() {
 	$("#header").prepend(formattedName);
 	// 联系方式
 	var formattedMobile = HTMLmobile.replace("%data%", bio.contacts.mobile);
+	// $("#footerContacts").append(formattedMobile);
 	$("#topContacts").append(formattedMobile);
 	var formattedEmail = HTMLemail.replace("%data%", bio.contacts.email);
+	$("#footerContacts").append(formattedEmail);
 	$("#topContacts").append(formattedEmail);
 	var formattedTwiter = HTMLtwitter.replace("%data%", bio.contacts.twitter);
+	$("#footerContacts").append(formattedTwiter);
 	$("#topContacts").append(formattedTwiter);
 	var formattedGithub = HTMLgithub.replace("%data%", bio.contacts.github);
+	$("#footerContacts").append(formattedGithub);
 	$("#topContacts").append(formattedGithub);
 	var formattedBlog = HTMLblog.replace("%data%", bio.contacts.blog);
+	$("#footerContacts").append(formattedBlog);
 	$("#topContacts").append(formattedBlog);
 	var formattedLocation = HTMLlocation.replace("%data%", bio.contacts.location);
 	$("#topContacts").append(formattedLocation);
@@ -173,27 +178,35 @@ projects.display = function() {
 }
 
 // 添加国际化名称显示按钮
-// itnButton.dispaly = function() {
-// 	$("#main").append(internationalizeButton);
 
-// 	// 显示国际化名称
-// 	function inName(nameString) {
-// 		var nameArray = nameString.split(" ");
-// 		// 名全部小写
-// 		nameArray[0] = nameArray[0].toLowerCase();
-// 		// 姓全部大写
-// 		nameArray[1] = nameArray[1].toUpperCase();
-// 		// 分割姓的首字母转为大写，其他保持不变
-// 		var giveName = nameArray[0].substr(0, 1).toUpperCase() + nameArray[0].substr(1);
-// 		return giveName + " " + nameArray[1];
-// 	}
-// 	// 获取鼠标点击时在页面上的坐标
-// 	$(document).click(function(loc) {
-// 		var x = loc.pageX;
-// 		var y = loc.pageY;
-// 		logClicks(x, y);
-// 	});
+// $("#main").append(internationalizeButton);
+
+// // 显示国际化名称
+// function inName(nameString) {
+// 	var nameArray = nameString.split(" ");
+// 	// 名全部小写
+// 	nameArray[0] = nameArray[0].toLowerCase();
+// 	// 姓全部大写
+// 	nameArray[1] = nameArray[1].toUpperCase();
+// 	// 分割姓的首字母转为大写，其他保持不变
+// 	var giveName = nameArray[0].substr(0, 1).toUpperCase() + nameArray[0].substr(1);
+// 	return giveName + " " + nameArray[1];
 // }
+// // 获取鼠标点击时在页面上的坐标
+// $(document).click(function(loc) {
+// 	var x = loc.pageX;
+// 	var y = loc.pageY;
+// 	logClicks(x, y);
+// });
+
+// 调用函数
 bio.display();
 education.display();
 work.display();
+projects.display();
+
+// 添加Map Key字符串
+var addMap = function() {
+	var mapKey = "AIzaSyAiwCnruwpVWQ8aHE86I_G_C-bEIhsTJRA";
+	$("#mapDiv").append(mapString);
+}
