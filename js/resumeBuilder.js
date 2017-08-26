@@ -6,7 +6,7 @@ var bio = {
 		email: "gaokangrui@gmail.com",
 		github: "Geekerui",
 		twitter: "@gaokangrui",
-		blog: "github.com/geekerui",
+		blog: "geekerui.blogspot.com",
 		location: "Hefei"
 	},
 	welcomeMessage: "Resume",
@@ -35,35 +35,41 @@ var education = {
 		date: "2010-06-30",
 		major: ["CS"],
 		url: "http//www.ahcme.edu.cn"
+	}],
+	onlineCourses: [{
+		title: "FEND",
+		school: "Udacity",
+		date: "2017-08",
+		url: "cn.udacity.com"
 	}]
 };
 var work = {
 	jobs: [{
-		employer: "null",
-		title: "null",
-		location: "Hefei",
-		dates: "null",
-		description: "null"
+		employer: "TGBus",
+		title: "Editor",
+		location: "Wuhu",
+		dates: "2015-09",
+		description: "Add content to website. Write article about games news. Add content to website. Write article about games news. Add content to website. Write article about games news. Add content to website. Write article about games news. Add content to website. Write article about games news."
 	}, {
-		employer: "null_2",
-		title: "null",
+		employer: "CRC",
+		title: "Cashier",
 		location: "Hefei",
-		dates: "null",
-		description: "null"
+		dates: "2016-07",
+		description: "Sold products. Get money. Change money. Sold products. Get money. Change money. Sold products. Get money. Change money. Sold products. Get money. Change money. Sold products. Get money. Change money. Sold products. Get money. Change money. Sold products. Get money. Change money. Sold products. Get money. Change money. "
 	}, {
-		employer: "null_3",
-		title: "null",
+		employer: "Dell",
+		title: "Delear",
 		location: "Hefei",
-		dates: "null",
-		description: "null"
+		dates: "2017-01",
+		description: "Sold Computer. Sold Computer. Sold Computer. Sold Computer. Sold Computer. Sold Computer. Sold Computer. Sold Computer. Sold Computer. Sold Computer. Sold Computer. Sold Computer. Sold Computer. Sold Computer. Sold Computer. Sold Computer. Sold Computer. Sold Computer. Sold Computer. Sold Computer. Sold Computer. "
 	}]
 };
 var projects = {
 	project: [{
-		title: "null",
-		dates: "null",
-		description: "null",
-		images: ["http://placehold.it/150x150"]
+		title: "Aloha OE",
+		dates: "2016-03",
+		description: "An android APP. Make some classicla senteces from given model. ",
+		images: ["http://placehold.it/400x300", "http://placehold.it/400x300"]
 	}]
 };
 
@@ -118,6 +124,7 @@ bio.display = function() {
 
 // 显示教育信息
 education.display = function() {
+	// 线下课程
 	education.schools.forEach(function(school) {
 		$("#education").append(HTMLschoolStart);
 
@@ -131,6 +138,19 @@ education.display = function() {
 		$(".education-entry:last").append(formattedSchoolLocation);
 		var formattedSchoolMajor = HTMLschoolMajor.replace("%data%", school.major);
 		$(".education-entry:last").append(formattedSchoolMajor);
+	});
+	// 在线课程
+	education.onlineCourses.forEach(function(onlineCourse) {
+		$("#education").append(HTMLonlineClasses);
+		$("#education").append(HTMLschoolStart)
+		var formattedTitle = HTMLonlineTitle.replace("%data%", onlineCourse.title);
+		$(".education-entry:last").append(formattedTitle);
+		var formattedSchool = HTMLonlineSchool.replace("%data%", onlineCourse.school);
+		$(".education-entry:last").append(formattedSchool);
+		var formattedDates = HTMLonlineDates.replace("%data%", onlineCourse.date);
+		$(".education-entry:last").append(formattedDates);
+		var formattedURL = HTMLonlineURL.replace("%data%", onlineCourse.url);
+		$(".education-entry:last").append(formattedURL);
 	});
 }
 
@@ -170,8 +190,8 @@ projects.display = function() {
 		$(".project-entry:last").append(formattedDates);
 		$(".project-entry:last").append(formattedDescription);
 
-		if (projects.project[i].images.length > 0) {
-			var formattedImage = HTMLprojectImage.replace("%data%", projects.project[i].images);
+		for (var j = 0; j < projects.project[i].images.length; j++) {
+			var formattedImage = HTMLprojectImage.replace("%data%", projects.project[i].images[j]);
 			$(".project-entry:last").append(formattedImage);
 		}
 	}
@@ -206,7 +226,13 @@ work.display();
 projects.display();
 
 // 添加Map Key字符串
-var addMap = function() {
-	var mapKey = "AIzaSyAiwCnruwpVWQ8aHE86I_G_C-bEIhsTJRA";
-	$("#mapDiv").append(mapString);
+// var addMap = function() {
+// 	$("#mapDiv").append(map);
+// }
+// addMap();
+
+// 添加地图
+function addMap() {
+	$("#mapDiv").append(googleMap);
 }
+addMap();
