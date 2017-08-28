@@ -18,28 +18,28 @@ var education = {
 		name: "No.50 Middle School",
 		location: "Hefei",
 		degree: "Junior High School",
-		date: "2010-06-30",
-		major: ["Student"],
+		dates: "2010-06-30",
+		majors: ["Student"],
 		url: "http://50z.ssjy.cn/"
 	}, {
 		name: "Senior High School attached HFUT",
 		location: "Hefei",
 		degree: "Senior High School",
-		date: "2013-06-30",
-		major: ["Student"],
+		dates: "2013-06-30",
+		majors: ["Student"],
 		url: "http://www.hfgdfz.net/"
 	}, {
 		name: "AHCME",
 		location: "Wuhu",
 		degree: "Colledge",
-		date: "2010-06-30",
-		major: ["CS"],
+		dates: "2010-06-30",
+		majors: ["CS"],
 		url: "http//www.ahcme.edu.cn"
 	}],
 	onlineCourses: [{
 		title: "FEND",
 		school: "Udacity",
-		date: "2017-08",
+		dates: "2017-08",
 		url: "cn.udacity.com"
 	}]
 };
@@ -132,11 +132,11 @@ education.display = function() {
 		$(".education-entry:last").append(formattedSchoolName);
 		var formattedSchoolDegree = HTMLschoolDegree.replace("%data%", school.degree);
 		$(".education-entry:last").append(formattedSchoolDegree);
-		var formattedSchoolDates = HTMLschoolDates.replace("%data%", school.date);
+		var formattedSchoolDates = HTMLschoolDates.replace("%data%", school.dates);
 		$(".education-entry:last").append(formattedSchoolDates);
 		var formattedSchoolLocation = HTMLschoolLocation.replace("%data%", school.location);
 		$(".education-entry:last").append(formattedSchoolLocation);
-		var formattedSchoolMajor = HTMLschoolMajor.replace("%data%", school.major);
+		var formattedSchoolMajor = HTMLschoolMajor.replace("%data%", school.majors);
 		$(".education-entry:last").append(formattedSchoolMajor);
 	});
 	// 在线课程
@@ -147,7 +147,7 @@ education.display = function() {
 		$(".education-entry:last").append(formattedTitle);
 		var formattedSchool = HTMLonlineSchool.replace("%data%", onlineCourse.school);
 		$(".education-entry:last").append(formattedSchool);
-		var formattedDates = HTMLonlineDates.replace("%data%", onlineCourse.date);
+		var formattedDates = HTMLonlineDates.replace("%data%", onlineCourse.dates);
 		$(".education-entry:last").append(formattedDates);
 		var formattedURL = HTMLonlineURL.replace("%data%", onlineCourse.url);
 		$(".education-entry:last").append(formattedURL);
