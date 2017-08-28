@@ -120,7 +120,7 @@ bio.display = function() {
 		formattedSkill = HTMLskills.replace("%data%", bio.skills[3]);
 		$("#skills").append(formattedSkill);
 	}
-}
+};
 
 // 显示教育信息
 education.display = function() {
@@ -142,7 +142,7 @@ education.display = function() {
 	// 在线课程
 	education.onlineCourses.forEach(function(onlineCourse) {
 		$("#education").append(HTMLonlineClasses);
-		$("#education").append(HTMLschoolStart)
+		$("#education").append(HTMLschoolStart);
 		var formattedTitle = HTMLonlineTitle.replace("%data%", onlineCourse.title);
 		$(".education-entry:last").append(formattedTitle);
 		var formattedSchool = HTMLonlineSchool.replace("%data%", onlineCourse.school);
@@ -152,7 +152,7 @@ education.display = function() {
 		var formattedURL = HTMLonlineURL.replace("%data%", onlineCourse.url);
 		$(".education-entry:last").append(formattedURL);
 	});
-}
+};
 
 // 显示技能
 // bio.skills.display = function() {
@@ -160,22 +160,21 @@ education.display = function() {
 // }
 // 显示工作详情
 work.display = function() {
-	for (var job in work.jobs) {
+	work.jobs.forEach(function(job) {
 		$("#workExperience").append(HTMLworkStart);
 
-		var formattedEmployer = HTMLworkEmployer.replace("%data%", work.jobs[job].employer);
-		var formattedTitle = HTMLworkTitle.replace("%data%", work.jobs[job].title);
+		var formattedEmployer = HTMLworkEmployer.replace("%data%", job.employer);
+		var formattedTitle = HTMLworkTitle.replace("%data%", job.title);
 		var formattedEmployerTitle = formattedEmployer + formattedTitle;
 		$(".work-entry:last").append(formattedEmployerTitle);
 
-		var formattedDates = HTMLworkDates.replace("%data%", work.jobs[job].dates);
-		var formattedLocation = HTMLworkLocation.replace("%data%", work.jobs[job].location);
-		var formattedDescription = HTMLworkDescription.replace("%data%", work.jobs[job].description);
+		var formattedDates = HTMLworkDates.replace("%data%", job.dates);
+		var formattedLocation = HTMLworkLocation.replace("%data%", job.location);
+		var formattedDescription = HTMLworkDescription.replace("%data%", job.description);
 		var formattedDatesLocationDesc = formattedDates + formattedLocation + formattedDescription;
 		$(".work-entry:last").append(formattedDatesLocationDesc);
-
-	}
-}
+	});
+};
 
 // 在 projects 对象中封装 display()函数
 projects.display = function() {
@@ -195,7 +194,7 @@ projects.display = function() {
 			$(".project-entry:last").append(formattedImage);
 		}
 	}
-}
+};
 
 // 添加国际化名称显示按钮
 
