@@ -34,13 +34,13 @@ var education = {
 		degree: "Colledge",
 		dates: "2010-06-30",
 		majors: ["CS"],
-		url: "http//www.ahcme.edu.cn"
+		url: "http://www.ahcme.edu.cn"
 	}],
 	onlineCourses: [{
 		title: "FEND",
 		school: "Udacity",
 		dates: "2017-08",
-		url: "cn.udacity.com"
+		url: "http://cn.udacity.com"
 	}]
 };
 var work = {
@@ -65,7 +65,7 @@ var work = {
 	}]
 };
 var projects = {
-	project: [{
+	projects: [{
 		title: "Aloha OE",
 		dates: "2016-03",
 		description: "An android APP. Make some classicla senteces from given model. ",
@@ -83,43 +83,33 @@ bio.display = function() {
 	$("#header").prepend(formattedName);
 	// 联系方式
 	var formattedMobile = HTMLmobile.replace("%data%", bio.contacts.mobile);
-	// $("#footerContacts").append(formattedMobile);
 	$("#topContacts").append(formattedMobile);
+
 	var formattedEmail = HTMLemail.replace("%data%", bio.contacts.email);
-	$("#footerContacts").append(formattedEmail);
-	$("#topContacts").append(formattedEmail);
 	var formattedTwiter = HTMLtwitter.replace("%data%", bio.contacts.twitter);
-	$("#footerContacts").append(formattedTwiter);
-	$("#topContacts").append(formattedTwiter);
 	var formattedGithub = HTMLgithub.replace("%data%", bio.contacts.github);
-	$("#footerContacts").append(formattedGithub);
-	$("#topContacts").append(formattedGithub);
 	var formattedBlog = HTMLblog.replace("%data%", bio.contacts.blog);
-	$("#footerContacts").append(formattedBlog);
-	$("#topContacts").append(formattedBlog);
+	$("#topContacts, #footerContacts").append(formattedEmail, formattedTwiter, formattedGithub, formattedBlog);
+
 	var formattedLocation = HTMLlocation.replace("%data%", bio.contacts.location);
 	$("#topContacts").append(formattedLocation);
+
 	// 图片
 	if (bio.biopic.length > 0) {
 		var formattedBiopic = HTMLbioPic.replace("%data%", bio.biopic);
 		$("#header").append(formattedBiopic);
 	}
+
 	var formattedWelcomeMsg = HTMLwelcomeMsg.replace("%data%", bio.welcomeMessage);
 	$("#header").append(formattedWelcomeMsg);
 
 	// 显示技能
-	if (bio.skills.length > 0) {
-		$("#header").append(HTMLskillsStart);
+	$("#header").append(HTMLskillsStart);
+	bio.skills.forEach(function(skill) {
+		var formattedSkill = HTMLskills.replace("%data%", skill);
+		$("#skills").append(formattedSkill);
+	});
 
-		var formattedSkill = HTMLskills.replace("%data%", bio.skills[0]);
-		$("#skills").append(formattedSkill);
-		formattedSkill = HTMLskills.replace("%data%", bio.skills[1]);
-		$("#skills").append(formattedSkill);
-		formattedSkill = HTMLskills.replace("%data%", bio.skills[2]);
-		$("#skills").append(formattedSkill);
-		formattedSkill = HTMLskills.replace("%data%", bio.skills[3]);
-		$("#skills").append(formattedSkill);
-	}
 };
 
 // 显示教育信息
@@ -128,36 +118,25 @@ education.display = function() {
 	education.schools.forEach(function(school) {
 		$("#education").append(HTMLschoolStart);
 
-		var formattedSchoolName = HTMLschoolName.replace("%data%", school.name);
-		$(".education-entry:last").append(formattedSchoolName);
+		var formattedSchoolName = HTMLschoolName.replace("%data%", school.name).replace("#", school.url);
 		var formattedSchoolDegree = HTMLschoolDegree.replace("%data%", school.degree);
-		$(".education-entry:last").append(formattedSchoolDegree);
 		var formattedSchoolDates = HTMLschoolDates.replace("%data%", school.dates);
-		$(".education-entry:last").append(formattedSchoolDates);
 		var formattedSchoolLocation = HTMLschoolLocation.replace("%data%", school.location);
-		$(".education-entry:last").append(formattedSchoolLocation);
 		var formattedSchoolMajor = HTMLschoolMajor.replace("%data%", school.majors);
-		$(".education-entry:last").append(formattedSchoolMajor);
+		$(".education-entry:last").append(formattedSchoolName, formattedSchoolDegree, formattedSchoolDates, formattedSchoolLocation, formattedSchoolMajor);
 	});
 	// 在线课程
 	education.onlineCourses.forEach(function(onlineCourse) {
-		$("#education").append(HTMLonlineClasses);
-		$("#education").append(HTMLschoolStart);
+		$("#education").append(HTMLonlineClasses, HTMLschoolStart);
+
 		var formattedTitle = HTMLonlineTitle.replace("%data%", onlineCourse.title);
-		$(".education-entry:last").append(formattedTitle);
 		var formattedSchool = HTMLonlineSchool.replace("%data%", onlineCourse.school);
-		$(".education-entry:last").append(formattedSchool);
 		var formattedDates = HTMLonlineDates.replace("%data%", onlineCourse.dates);
-		$(".education-entry:last").append(formattedDates);
-		var formattedURL = HTMLonlineURL.replace("%data%", onlineCourse.url);
-		$(".education-entry:last").append(formattedURL);
+		var formattedURL = HTMLonlineURL.replace("%data%", onlineCourse.url).replace("#", onlineCourse.url);
+		$(".education-entry:last").append(formattedTitle, formattedSchool, formattedDates, formattedURL);
 	});
 };
 
-// 显示技能
-// bio.skills.display = function() {
-
-// }
 // 显示工作详情
 work.display = function() {
 	work.jobs.forEach(function(job) {
@@ -165,32 +144,26 @@ work.display = function() {
 
 		var formattedEmployer = HTMLworkEmployer.replace("%data%", job.employer);
 		var formattedTitle = HTMLworkTitle.replace("%data%", job.title);
-		var formattedEmployerTitle = formattedEmployer + formattedTitle;
-		$(".work-entry:last").append(formattedEmployerTitle);
-
 		var formattedDates = HTMLworkDates.replace("%data%", job.dates);
 		var formattedLocation = HTMLworkLocation.replace("%data%", job.location);
 		var formattedDescription = HTMLworkDescription.replace("%data%", job.description);
-		var formattedDatesLocationDesc = formattedDates + formattedLocation + formattedDescription;
-		$(".work-entry:last").append(formattedDatesLocationDesc);
+		$(".work-entry:last").append(formattedEmployer, formattedTitle, formattedDates, formattedLocation, formattedDescription);
 	});
 };
 
 // 在 projects 对象中封装 display()函数
 projects.display = function() {
-	for (var i = 0; i < projects.project.length; i++) {
+	for (var i = 0; i < projects.projects.length; i++) {
 		$("#projects").append(HTMLprojectStart);
 
-		var formattedTitle = HTMLprojectTitle.replace("%data%", projects.project[i].title);
-		var formattedDates = HTMLprojectDates.replace("%data%", projects.project[i].dates);
-		var formattedDescription = HTMLprojectDescription.replace("%data%", projects.project[i].description);
+		var formattedTitle = HTMLprojectTitle.replace("%data%", projects.projects[i].title);
+		var formattedDates = HTMLprojectDates.replace("%data%", projects.projects[i].dates);
+		var formattedDescription = HTMLprojectDescription.replace("%data%", projects.projects[i].description);
 		// 添加各个属性到页面中
-		$(".project-entry:last").append(formattedTitle);
-		$(".project-entry:last").append(formattedDates);
-		$(".project-entry:last").append(formattedDescription);
+		$(".project-entry:last").append(formattedTitle, formattedDates, formattedDescription);
 
-		for (var j = 0; j < projects.project[i].images.length; j++) {
-			var formattedImage = HTMLprojectImage.replace("%data%", projects.project[i].images[j]);
+		for (var j = 0; j < projects.projects[i].images.length; j++) {
+			var formattedImage = HTMLprojectImage.replace("%data%", projects.projects[i].images[j]);
 			$(".project-entry:last").append(formattedImage);
 		}
 	}
